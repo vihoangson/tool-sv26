@@ -37,24 +37,24 @@ public function __construct()
 public function handle()
 {           
 
-    define('KEY_CHATWORK', env('CHATWORKKEY'));
-   
-    if(file_get_contents('http://oop.vn/hook/touch_hook.php')==1){
-        $check_deloyed=true;
-    }else{
-        $check_deloyed=false;
-    }
-    
-    if($check_deloyed) {
-
-        $cw = new \App\Libs\ChatworkLib;
-        $cw->setRoomId('155104287');
-        $cw->setMsg('Hook git run  ');
-        $cw->nameServer = 'Server 29';
-        $cw->say_in_chatwork();
-
-        shell_exec('curl -X POST http://172.16.100.29:8080/job/Deploy_hito/build -H "Jenkins-Crumb:13c7f9b0e2792f89836996b8ba921aa2"');
-    }
+    // define('KEY_CHATWORK', env('CHATWORKKEY'));
+    //
+    // if(file_get_contents('http://oop.vn/hook/touch_hook.php')==1){
+    //     $check_deloyed=true;
+    // }else{
+    //     $check_deloyed=false;
+    // }
+    //
+    // if($check_deloyed) {
+    //
+    //     $cw = new \App\Libs\ChatworkLib;
+    //     $cw->setRoomId('155104287');
+    //     $cw->setMsg('Hook git run  ');
+    //     $cw->nameServer = 'Server 29';
+    //     $cw->say_in_chatwork();
+    //
+    //     shell_exec('curl -X POST http://172.16.100.29:8080/job/Deploy_hito/build -H "Jenkins-Crumb:13c7f9b0e2792f89836996b8ba921aa2"');
+    // }
 }
 
 

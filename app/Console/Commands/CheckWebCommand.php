@@ -42,10 +42,12 @@ public function handle()
     try{
         $client = new \GuzzleHttp\Client();
         $endpoint = [
-            // 'mobile.lampart-vn.com'=> "http://172.16.100.28",
+            'mobile.lampart-vn.com'=> "http://172.16.2.4",
             'morning.lampart-vn.com'=>"http://morning.lampart-vn.com",
-            // 'tool.oop.vn'=>"http://tool.oop.vn"
+            'tool.oop.vn'=>"http://sns.lampart-vn.com",
+            'stg-sns.lampart-vn.com'=>"http://stg-sns.lampart-vn.com",
         ];
+
         foreach ($endpoint as $key => $v_endpoint) {
             $response = $client->get($v_endpoint);
             $statusCode = $response->getStatusCode();
@@ -60,35 +62,27 @@ public function handle()
         $cw->nameServer = 'Server 29';
         $cw->say_in_chatwork();
     }
-    $cw = new \App\Libs\ChatworkLib;
-    $cw->setRoomId('155104287');
-    $cw->setMsg('[toall] .');
-    $cw->nameServer = 'Server 29';
-    $cw->say_in_chatwork();
 
 
     //todo: check in web deployed
-    
     //file_get_contents('http://oop.vn/hook/write_hook.php');
-    
     // if(file_get_contents('http://oop.vn/hook/touch_hook.php')==1){
     //     $check_deloyed=true;
     // }else{
     //     $check_deloyed=false;
     // }
-
-    $check_deloyed=false;
-    
-    if($check_deloyed) {
-        
-        $cw = new \App\Libs\ChatworkLib;
-        $cw->setRoomId('155104287');
-        $cw->setMsg('Hook git run  ');
-        $cw->nameServer = 'Server 29';
-        $cw->say_in_chatwork();
-
-        shell_exec('curl -X POST http://172.16.100.29:8080/job/Deploy_hito/build -H "Jenkins-Crumb:13c7f9b0e2792f89836996b8ba921aa2"');
-    }
+    // $check_deloyed=false;
+    //
+    // if($check_deloyed) {
+    //
+    //     $cw = new \App\Libs\ChatworkLib;
+    //     $cw->setRoomId('155104287');
+    //     $cw->setMsg('Hook git run  ');
+    //     $cw->nameServer = 'Server 29';
+    //     $cw->say_in_chatwork();
+    //
+    //     shell_exec('curl -X POST http://172.16.100.29:8080/job/Deploy_hito/build -H "Jenkins-Crumb:13c7f9b0e2792f89836996b8ba921aa2"');
+    // }
 }
 
 
