@@ -42,9 +42,9 @@ public function handle()
     try{
         $client = new \GuzzleHttp\Client();
         $endpoint = [
-            'mobile.lampart-vn.com'=> "http://172.16.100.28",
+            // 'mobile.lampart-vn.com'=> "http://172.16.100.28",
             'morning.lampart-vn.com'=>"http://morning.lampart-vn.com",
-            'tool.oop.vn'=>"http://tool.oop.vn"                    
+            // 'tool.oop.vn'=>"http://tool.oop.vn"
         ];
         foreach ($endpoint as $key => $v_endpoint) {
             $response = $client->get($v_endpoint);
@@ -60,16 +60,24 @@ public function handle()
         $cw->nameServer = 'Server 29';
         $cw->say_in_chatwork();
     }
+    $cw = new \App\Libs\ChatworkLib;
+    $cw->setRoomId('155104287');
+    $cw->setMsg('[toall] .');
+    $cw->nameServer = 'Server 29';
+    $cw->say_in_chatwork();
+
 
     //todo: check in web deployed
     
     //file_get_contents('http://oop.vn/hook/write_hook.php');
     
-    if(file_get_contents('http://oop.vn/hook/touch_hook.php')==1){
-        $check_deloyed=true;
-    }else{
-        $check_deloyed=false;
-    }
+    // if(file_get_contents('http://oop.vn/hook/touch_hook.php')==1){
+    //     $check_deloyed=true;
+    // }else{
+    //     $check_deloyed=false;
+    // }
+
+    $check_deloyed=false;
     
     if($check_deloyed) {
         
