@@ -228,4 +228,12 @@ return [
 
     ],
 
+
+    'endpointWeb' => [
+        'mobile.lampart-vn.com'=> "http://172.16.2.4",
+        'morning.lampart-vn.com'=>"http://morning.lampart-vn.com",
+        'tool.oop.vn'=>"http://sns.lampart-vn.com",
+        'stg-sns.lampart-vn.com'=>"http://stg-sns.lampart-vn.com",
+    ],
+
 ];
