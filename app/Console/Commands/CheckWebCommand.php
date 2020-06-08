@@ -40,20 +40,20 @@ public function handle()
         define('KEY_CHATWORK', env('CHATWORKKEY'));
 
     try{
-        $client = new \GuzzleHttp\Client();
+        $client = new \GuzzleHttp\Client(['verify' => false ]);
         $endpoint = config('app.endpointWeb');
 
         foreach ($endpoint as $key => $v_endpoint) {
             $response = $client->get($v_endpoint);
             $statusCode = $response->getStatusCode();
             if($statusCode != 200){
-                throw new \Exception("[toall] Cron checkweb: Không truy cập được: ".$key, 1);
+                throw new \Exception("Cron checkweb: Không truy cập được: ".$key, 1);
             }                
         }
     }catch(\Exception $e){
         $cw = new \App\Libs\ChatworkLib;
         $cw->setRoomId('155104287');
-        $cw->setMsg('[toall] Automatic Cron checkweb: Can\'t connected to :  '.$e->getMessage());
+        $cw->setMsg('Automatic Cron checkweb: Can\'t connected to :  '.$e->getMessage());
         $cw->nameServer = 'Server 172.16.2.8';
         $cw->say_in_chatwork();
     }

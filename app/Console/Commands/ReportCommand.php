@@ -49,11 +49,11 @@ public function handle()
         $cw->nameServer = 'Server [172.16.2.8]';
         $cw->say_in_chatwork();
     }catch(\Exception $e){
-        // $cw = new \App\Libs\ChatworkLib;
-        // $cw->setRoomId('155104287');
-        // $cw->setMsg('[toall] Automatic Cron checkweb: Can\'t connected to :  '.$e->getMessage());
-        // $cw->nameServer = 'Server [172.16.2.8]';
-        // $cw->say_in_chatwork();
+        $cw = new \App\Libs\ChatworkLib;
+        $cw->setRoomId('191671091');
+        $cw->setMsg('Error'.$e->getMessage() );
+        $cw->nameServer = 'Server [172.16.2.8]';
+        $cw->say_in_chatwork();
     }
 
 
@@ -79,15 +79,20 @@ public function handle()
 }
 
     private function checkWeb(){
-        $client = new \GuzzleHttp\Client();
+        $client = new \GuzzleHttp\Client(['verify' => false ]);
         $endpoint = config('app.endpointWeb');
 
         foreach ($endpoint as $key => $v_endpoint) {
-            $response = $client->get($v_endpoint);
-            $statusCode = $response->getStatusCode();
-            if($statusCode === 200){
-                $return[$v_endpoint]['status'] = '[OK]';
+            try{
+                $response = $client->get($v_endpoint);
+                $statusCode = $response->getStatusCode();
+                if($statusCode === 200){
+                    $return[$v_endpoint]['status'] = '[OK]';
+                }
+            }catch(\Exception $e ){
+                $return[$v_endpoint]['status'] = '[NG] => '.$e->getMessage() ;
             }
+
         }
         return $return;
     }
